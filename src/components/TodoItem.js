@@ -2,11 +2,12 @@ import React, { Component } from "react";
 
 class TodoList extends Component {
   render() {
+    const {title} = this.props;
     return (
       <div>
         <li className="list-group-item">
           <div className="d-flex justify-content-between">
-            <h5> Title </h5>
+            <h5> {title}</h5>
             <div>
               <span className="mx-3">
                 <i className="fas fa-pen"> </i>

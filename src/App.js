@@ -6,36 +6,35 @@ import { v4 as uuidv4 } from "uuid";
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
+ 
+    state = {
       items: [],
       item: "",
       id: uuidv4(),
       editItem: false
     };
-  }
+  
 
   handleChange = e => {
     this.setState({
       item: e.target.value
     });
   };
-
+  
   handleSubmit = e => {
     e.preventDefault();
     const newItem = {
-      item: this.state.item,
+      title: this.state.item,
       id: uuidv4()
     };
     const updatedItem = [...this.state.items, newItem];
     this.setState({
       items: updatedItem,
+      item: ""
     });
   };
   
   render() {
-    console.log(this.state.items);
     return (
       <div className="container">
         <div className="row">
@@ -46,7 +45,7 @@ class App extends Component {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
             />
-            <TodoList />
+            <TodoList items = {this.state.items} />
           </div>
         </div>
       </div>
