@@ -5,22 +5,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { v4 as uuidv4 } from "uuid";
 
 class App extends Component {
-
- 
-    state = {
-      items: [],
-      item: "",
-      id: uuidv4(),
-      editItem: false
-    };
-  
+  state = {
+    items: [],
+    item: "",
+    id: uuidv4(),
+    editItem: false
+  };
 
   handleChange = e => {
     this.setState({
       item: e.target.value
     });
   };
-  
+
   handleSubmit = e => {
     e.preventDefault();
     const newItem = {
@@ -33,7 +30,22 @@ class App extends Component {
       item: ""
     });
   };
-  
+
+  deleteItem = (id) => {
+    const filteredItem = this.state.items.filter(item => 
+    item.id !== id
+    )
+    this.setState({
+      items: filteredItem
+    });
+  };
+
+  clearList = () => {
+    this.setState({
+      items: []
+    });
+  };
+
   render() {
     return (
       <div className="container">
@@ -45,7 +57,11 @@ class App extends Component {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
             />
-            <TodoList items = {this.state.items} />
+            <TodoList 
+            items={this.state.items} 
+            clearList={this.clearList}
+            deleteItem = {this.deleteItem}
+            />
           </div>
         </div>
       </div>
