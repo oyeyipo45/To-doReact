@@ -12,7 +12,7 @@ class App extends Component {
     editItem: false
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
       item: e.target.value
     });
@@ -46,6 +46,17 @@ class App extends Component {
     });
   };
 
+  editItem = id => {
+    const filteredItem = this.state.items.filter(item => item.id !== id);
+    const selectedItem = this.state.items.find(item => item.id === id);
+    this.setState({
+      items: filteredItem,
+      item: selectedItem.title,
+      id: id,
+      editItem: true
+    });
+  };
+
   render() {
     return (
       <div className="container">
@@ -56,11 +67,13 @@ class App extends Component {
               item={this.state.item}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
+              editItem = {this.state.editItem}
             />
             <TodoList 
             items={this.state.items} 
             clearList={this.clearList}
             deleteItem = {this.deleteItem}
+            editItem = {this.editItem}
             />
           </div>
         </div>

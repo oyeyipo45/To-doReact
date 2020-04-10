@@ -4,17 +4,20 @@ import TodoItem from "./TodoItem";
 class TodoList extends Component {
 
   render(){
-    const {items, clearList, deleteItem} = this.props
+    const {items, clearList, deleteItem, editItem} = this.props
     return (
       <div> 
         <ul className="list-group my-5">
 
-        {
+        { 
         items.map(item => {
           return <TodoItem 
           key={item.id} 
           title={item.title}
           deleteItem = {() => deleteItem(item.id)}
+          editItem = {() => editItem(item.id)}
+
+
           />
         })
       }

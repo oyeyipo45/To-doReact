@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 class TodoInput extends Component {
   render() {
-    const { item, handleChange, handleSubmit } = this.props;
+    const { item, handleChange, handleSubmit, editItem} = this.props;
     return (
       <form onSubmit= { handleSubmit }>
         <div className="form-group">
@@ -14,9 +14,9 @@ class TodoInput extends Component {
           onChange = { handleChange }
            />
           <button 
-          className="btn btn-block btn-primary my-3"
+          className={editItem ? "btn btn-block btn-success my-3" : "btn btn-block btn-primary my-3" }
           >
-            Add Items
+           {editItem ? "Edit Item" : "Add Item"}
           </button>
           
         </div>
